@@ -22,6 +22,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: var(--bg);
     color: var(--text);
@@ -90,7 +94,6 @@ nav a:hover {
     width: 25px;
     height: 2px;
     background: white;
-    transition: 0.3s;
 }
 
 /* MOBILE MENU */
@@ -262,6 +265,7 @@ footer {
 <section class="section hero" id="home">
     <h1>Animation & Digital Art Studio</h1>
     <p>Real-time systems. Cinematic animation. Procedural art. Interactive narrative experiences.</p>
+    <button class="button" onclick="scrollToExplore()">Explore Work</button>
 </section>
 
 <section class="section" id="about">
@@ -294,7 +298,7 @@ footer {
 <section class="section" id="contact">
     <h2>Contact</h2>
 
-    <form id="contact-form" https://formspree.io/f/mpqjkjwp" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -315,8 +319,14 @@ function toggleMenu() {
     document.getElementById("mobileNav").classList.toggle("active");
 }
 
-// Formspree AJAX submission
+function scrollToExplore() {
+    document.getElementById("explore").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
 const form = document.getElementById("contact-form");
+
 form.addEventListener("submit", async function(e) {
     e.preventDefault();
     const data = new FormData(form);
@@ -325,6 +335,7 @@ form.addEventListener("submit", async function(e) {
         body: data,
         headers: { 'Accept': 'application/json' }
     });
+
     if (response.ok) {
         document.getElementById("successMessage").style.display = "block";
         form.reset();
