@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHMAGE | Animation & Digital Art Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #0e0e11;
+    --accent: #6c5ce7;
+    --text: #ffffff;
+    --muted: #a0a0a0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(14,14,17,0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+.section {
+    padding: 120px 10% 100px 10%;
+    min-height: 100vh;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    max-width: 700px;
+}
+
+.hero p {
+    margin-top: 20px;
+    color: var(--muted);
+    max-width: 500px;
+}
+
+.button {
+    margin-top: 30px;
+    padding: 12px 28px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: var(--accent);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.card {
+    padding: 30px;
+    background: #16161d;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: #1c1c24;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.contact input, .contact textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #16161d;
+    border: none;
+    color: white;
+}
+
+.toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent);
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Mobile Mode Simulation */
+.mobile-mode .section {
+    padding: 100px 5% 80px 5%;
+}
+
+.mobile-mode .hero h1 {
+    font-size: 2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ARCHMAGE</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#explore">Explore</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section class="section hero" id="home">
+    <h1>Freelance Animation & Digital Art Studio</h1>
+    <p>Real-time systems. Cinematic animation. Procedural art. Interactive narrative experiences.</p>
+    <button class="button" onclick="scrollToSection('explore')">Explore Work</button>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+    <h2>About ARCHMAGE</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Real-Time & Cinematic Animation Systems</h3>
+            <p>High-performance animation pipelines blending game-engine workflows with cinematic storytelling.</p>
+        </div>
+
+        <div class="card">
+            <h3>Procedural & Experimental Digital Art</h3>
+            <p>Algorithm-driven visuals and generative art pushing creative and technical boundaries.</p>
+        </div>
+
+        <div class="card">
+            <h3>Interactive Narrative & Engagement Systems</h3>
+            <p>Designing immersive digital experiences where audience interaction shapes the story.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EXPLORE -->
+<section class="section" id="explore">
+    <h2>Explore Projects</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Project One</h3>
+            <p>Short cinematic real-time rendered sequence.</p>
+        </div>
+
+        <div class="card">
+            <h3>Project Two</h3>
+            <p>Experimental generative art installation.</p>
+        </div>
+
+        <div class="card">
+            <h3>Project Three</h3>
+            <p>Interactive web-based narrative system.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+    <h2>Contact</h2>
+
+    <form>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea rows="4" placeholder="Your Message"></textarea>
+        <button class="button">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 ARCHMAGE Studio — Animation & Digital Art
+</footer>
+
+<div class="toggle" onclick="toggleMode()">Switch View</div>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+function toggleMode() {
+    document.body.classList.toggle("mobile-mode");
+}
+
+// Auto detect mobile device
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+    document.body.classList.add("mobile-mode");
+}
+</script>
+
+</body>
+</html>
