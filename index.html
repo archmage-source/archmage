@@ -93,7 +93,7 @@ nav a:hover {
     transition: 0.3s;
 }
 
-/* MOBILE MENU PANEL */
+/* MOBILE MENU */
 
 .mobile-nav {
     position: fixed;
@@ -123,15 +123,8 @@ nav a:hover {
 /* MOBILE RESPONSIVE */
 
 @media (max-width: 768px) {
-
-    nav {
-        display: none;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
+    nav { display: none; }
+    .hamburger { display: flex; }
 }
 
 /* SECTIONS */
@@ -173,6 +166,8 @@ nav a:hover {
     background: var(--accent);
 }
 
+/* GRID */
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -191,6 +186,40 @@ nav a:hover {
     transform: translateY(-5px);
     background: #1c1c24;
 }
+
+/* CONTACT */
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin-top: 40px;
+}
+
+#contact input,
+#contact textarea {
+    background: #16161d;
+    border: 1px solid #222;
+    color: white;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.success-message {
+    margin-top: 20px;
+    color: var(--accent);
+    display: none;
+}
+
+/* FOOTER */
 
 footer {
     text-align: center;
@@ -233,7 +262,6 @@ footer {
 <section class="section hero" id="home">
     <h1>Animation & Digital Art Studio</h1>
     <p>Real-time systems. Cinematic animation. Procedural art. Interactive narrative experiences.</p>
-    <button class="button" onclick="scrollToSection('explore')">Explore Work</button>
 </section>
 
 <section class="section" id="about">
@@ -241,15 +269,15 @@ footer {
     <div class="grid">
         <div class="card">
             <h3>Real-Time & Cinematic Animation Systems</h3>
-            <p>High-performance animation pipelines blending game-engine workflows with cinematic storytelling.</p>
+            <p>High-performance animation pipelines blending real-time workflows with cinematic storytelling.</p>
         </div>
         <div class="card">
             <h3>Procedural & Experimental Digital Art</h3>
-            <p>Algorithm-driven visuals and generative art pushing creative and technical boundaries.</p>
+            <p>Algorithm-driven visuals pushing creative and technical boundaries.</p>
         </div>
         <div class="card">
             <h3>Interactive Narrative & Engagement Systems</h3>
-            <p>Designing immersive digital experiences where audience interaction shapes the story.</p>
+            <p>Immersive digital experiences shaped by audience interaction.</p>
         </div>
     </div>
 </section>
@@ -265,7 +293,17 @@ footer {
 
 <section class="section" id="contact">
     <h2>Contact</h2>
-    <p>Email: your@email.com</p>
+
+    <form id="contact-form" https://formspree.io/f/mpqjkjwp" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button class="button" type="submit">Send Message</button>
+    </form>
+
+    <div class="success-message" id="successMessage">
+        Message sent successfully.
+    </div>
 </section>
 
 <footer>
@@ -273,13 +311,25 @@ footer {
 </footer>
 
 <script>
-function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({behavior: "smooth"});
-}
-
 function toggleMenu() {
     document.getElementById("mobileNav").classList.toggle("active");
 }
+
+// Formspree AJAX submission
+const form = document.getElementById("contact-form");
+form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+        document.getElementById("successMessage").style.display = "block";
+        form.reset();
+    }
+});
 </script>
 
 </body>
