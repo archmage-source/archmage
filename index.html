@@ -247,33 +247,52 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
 </footer>
 
 <script>
+// Hamburger menu toggle
 function toggleMenu() {
     document.getElementById("mobileNav").classList.toggle("active");
 }
 
+// Scroll to explore
 function scrollToExplore() {
     document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
 }
 
-// Project accordion
+// Project accordion: desktop only single open, mobile independent
 let currentOpen = null;
+
 function toggleProject(id) {
-    if (currentOpen && currentOpen !== id) {
-        const prev = document.getElementById(currentOpen);
-        prev.style.maxHeight = "0";
-        prev.style.opacity = 0;
-    }
     const el = document.getElementById(id);
-    if (el.style.maxHeight && el.style.maxHeight !== "0px") {
-        el.style.maxHeight = "0";
-        el.style.opacity = 0;
-        currentOpen = null;
+    const isMobile = window.innerWidth <= 1024;
+
+    if (!isMobile) {
+        // Desktop: close previous open
+        if (currentOpen && currentOpen !== id) {
+            const prev = document.getElementById(currentOpen);
+            prev.style.maxHeight = "0";
+            prev.style.opacity = 0;
+        }
+
+        if (el.style.maxHeight && el.style.maxHeight !== "0px") {
+            el.style.maxHeight = "0";
+            el.style.opacity = 0;
+            currentOpen = null;
+        } else {
+            el.style.maxHeight = el.scrollHeight + "px";
+            el.style.opacity = 1;
+            currentOpen = id;
+        }
     } else {
-        el.style.maxHeight = el.scrollHeight + "px";
-        el.style.opacity = 1;
-        currentOpen = id;
+        // Mobile: allow independent toggles
+        if (el.style.maxHeight && el.style.maxHeight !== "0px") {
+            el.style.maxHeight = "0";
+            el.style.opacity = 0;
+        } else {
+            el.style.maxHeight = el.scrollHeight + "px";
+            el.style.opacity = 1;
+        }
     }
 }
 </script>
+
 </body>
 </html>
