@@ -207,71 +207,39 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
 
 /* DESKTOP OPTIMIZATION */
 @media (min-width: 1025px) {
-    header {
-        padding: 20px 10%;
-    }
-
+    header { padding: 20px 10%; }
     nav { gap: 50px; }
     nav a { font-size: 1.1rem; }
 
-    .hero {
-        padding: 0 10%;
-    }
+    .hero { padding: 0 10%; }
+    .hero h1 { font-size: 4rem; max-width: 800px; }
+    .hero p { font-size: 1.3rem; max-width: 600px; }
+    .hero .button { padding: 14px 32px; font-size: 1.05rem; }
 
-    .hero h1 {
-        font-size: 4rem;
-        max-width: 800px;
-    }
+    .section { padding: 120px 10% 80px 10%; }
+    .grid { gap: 30px; }
+    .card { padding: 35px; font-size: 1.05rem; }
+    .card h3 { font-size: 1.25rem; }
+    #socials h3 { font-size: 1.3rem; }
+    #contact form { max-width: 700px; }
+    #contact input, #contact textarea { font-size: 1.1rem; padding: 14px; }
+    #contact button.button { padding: 14px 32px; font-size: 1.05rem; }
+    footer { font-size: 0.9rem; padding: 40px; }
+}
 
-    .hero p {
-        font-size: 1.3rem;
-        max-width: 600px;
-    }
-
-    .hero .button {
-        padding: 14px 32px;
-        font-size: 1.05rem;
-    }
-
-    .section {
-        padding: 120px 10% 80px 10%;
-    }
-
+/* ULTRA-WIDE DESKTOP GRID */
+@media (min-width: 1200px) {
     .grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 40px auto 0 auto;
         gap: 30px;
     }
-
-    .card {
-        padding: 35px;
-        font-size: 1.05rem;
-    }
-
-    .card h3 {
-        font-size: 1.25rem;
-    }
-
-    #socials h3 {
-        font-size: 1.3rem;
-    }
-
-    #contact form {
-        max-width: 700px;
-    }
-
-    #contact input, #contact textarea {
-        font-size: 1.1rem;
-        padding: 14px;
-    }
-
-    #contact button.button {
-        padding: 14px 32px;
-        font-size: 1.05rem;
-    }
-
-    footer {
-        font-size: 0.9rem;
-        padding: 40px;
-    }
+    .hero h1 { font-size: 5rem; }
+    .hero p { font-size: 1.5rem; max-width: 650px; }
+    .hero .button { font-size: 1.2rem; padding: 16px 36px; }
+    .card h3 { font-size: 1.4rem; }
+    .card p { font-size: 1.1rem; }
 }
 </style>
 </head>
@@ -367,7 +335,6 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
                         allowfullscreen>
                     </iframe>
                 </div>
-
             </div>
         </div>
 
