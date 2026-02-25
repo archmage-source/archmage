@@ -101,7 +101,7 @@ nav a:hover { color: var(--accent); }
 
 /* SOCIALS SECTION */
 #socials { text-align:center; margin-top:60px; margin-bottom:60px; }
-#socials h2 { margin-bottom:20px; }
+#socials h3 { margin-bottom:20px; font-weight:600; }
 #socials a { display:inline-block; padding:12px 24px; background: var(--accent); color:#fff; border-radius:6px; text-decoration:none; transition:0.3s; }
 #socials a:hover { background:#574bff; }
 
@@ -213,12 +213,12 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.8rem;
         </div>
 
     </div>
-</section>
 
-<!-- SOCIALS SECTION -->
-<section class="section" id="socials">
-    <h2>Socials</h2>
-    <a href="https://linktr.ee/ArchmageStudios" target="_blank">Visit Linktree</a>
+    <!-- SOCIALS under Explore Work -->
+    <div id="socials">
+        <h3>Socials</h3>
+        <a href="https://linktr.ee/ArchmageStudios" target="_blank">Visit Linktree</a>
+    </div>
 </section>
 
 <!-- CONTACT -->
@@ -250,7 +250,6 @@ function scrollToExplore() {
 let currentOpen = null;
 function toggleProject(id) {
     if (currentOpen && currentOpen !== id) {
-        // Close previous
         const prev = document.getElementById(currentOpen);
         prev.style.maxHeight = "0";
         prev.style.opacity = 0;
