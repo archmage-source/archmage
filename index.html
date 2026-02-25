@@ -33,12 +33,23 @@ header {
 }
 
 .logo-container { display: flex; align-items: center; gap: 12px; }
-.logo-container img { height: 40px; width: auto; }
-.logo-text { font-weight: 800; letter-spacing: 2px; font-size: 1.1rem; }
+.logo-container img { height: 50px; width: auto; }
+.logo-text { font-weight: 800; letter-spacing: 2px; font-size: 1.2rem; }
 
-/* DESKTOP NAV */
-nav { display: flex; gap: 30px; }
-nav a { text-decoration: none; color: var(--text); font-weight: 400; transition: 0.3s; }
+/* NAVIGATION */
+nav { display: flex; gap: 40px; }
+nav a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 1rem; transition: 0.3s; position: relative; }
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s;
+}
+nav a:hover::after { width: 100%; }
 nav a:hover { color: var(--accent); }
 
 /* HAMBURGER */
@@ -64,56 +75,57 @@ nav a:hover { color: var(--accent); }
 .mobile-nav.active { right: 0; }
 
 /* MOBILE RESPONSIVE */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     nav { display: none; }
     .hamburger { display: flex; }
 }
 
 /* SECTIONS */
-.section { padding: 120px 8% 100px 8%; min-height: 100vh; }
+.section { padding: 140px 8% 100px 8%; min-height: 100vh; }
 
-.hero { display: flex; flex-direction: column; justify-content: center; }
-.hero h1 { font-size: 3rem; font-weight: 800; max-width: 700px; }
-.hero p { margin-top: 20px; color: var(--muted); max-width: 500px; }
+.hero { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.hero h1 { font-size: 3rem; font-weight: 800; max-width: 700px; line-height: 1.2; }
+.hero p { margin-top: 20px; color: var(--muted); max-width: 500px; font-size: 1.1rem; }
 .button { margin-top: 30px; padding: 12px 28px; border: 1px solid var(--accent); background: transparent; color: var(--text); cursor: pointer; transition: 0.3s; }
 .button:hover { background: var(--accent); }
 
 /* GRID */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 40px; }
-.card { padding: 30px; background: #16161d; border-radius: 12px; transition: 0.3s; cursor: pointer; }
-.card:hover { transform: translateY(-5px); background: #1c1c24; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 40px; }
+.card { padding: 30px; background: #16161d; border-radius: 12px; transition: 0.3s; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+.card:hover { transform: translateY(-5px); background: #1c1c24; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
 /* PROJECT DETAILS */
 .project-details {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
     margin-top: 15px;
+    padding: 0 5px;
 }
 
 .project-details img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-.project-details p { margin-bottom: 15px; color: var(--muted); }
+.project-details p { margin-bottom: 15px; color: var(--muted); font-size: 0.95rem; }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
 .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
 .project-link { display:inline-block; padding:10px 20px; background: var(--accent); color:#fff; border-radius:6px; text-decoration:none; margin-top:10px; transition:0.3s; }
 .project-link:hover { background: #574bff; }
 
-/* SOCIALS SECTION */
+/* SOCIALS */
 #socials { text-align:center; margin-top:60px; margin-bottom:60px; }
-#socials h3 { margin-bottom:20px; font-weight:600; }
+#socials h3 { margin-bottom:20px; font-weight:600; font-size:1.2rem; }
 #socials a { display:inline-block; padding:12px 24px; background: var(--accent); color:#fff; border-radius:6px; text-decoration:none; transition:0.3s; }
 #socials a:hover { background:#574bff; }
 
 /* CONTACT */
-#contact form { display:flex; flex-direction: column; max-width:500px; margin-top:40px; }
+#contact form { display:flex; flex-direction: column; max-width:600px; margin-top:40px; }
 #contact input, #contact textarea {
-    background:#16161d; border:1px solid #222; color:white; padding:12px; margin-bottom:20px; border-radius:6px; font-size:0.95rem;
+    background:#16161d; border:1px solid #222; color:white; padding:12px; margin-bottom:20px; border-radius:6px; font-size:1rem;
 }
 #contact input:focus, #contact textarea:focus { outline:none; border-color: var(--accent); }
 
 /* FOOTER */
-footer { text-align:center; padding:30px; color: var(--muted); font-size:0.8rem; }
+footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem; }
 
 </style>
 </head>
@@ -177,20 +189,19 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.8rem;
 <section class="section" id="explore">
     <h2>Explore Projects</h2>
     <div class="grid">
-
-        <!-- Project 1: Visualisers -->
+        <!-- Project 1 -->
         <div class="card project-card" onclick="toggleProject('project1')">
             <h3>Visualisers</h3>
             <div class="project-details" id="project1">
                 <img src="assets/ctm_logo.png" alt="Visualiser Image">
                 <p>Development of the Visualisers for the Progressive Metal Project Carbon Theory. ARCHMAGE created immersive real-time visuals and interactive elements that sync with the music.</p>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/vCNTG7-xKCI" title="Visualisers Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/vCNTG7-xKCI" title="Visualisers Video" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
-        <!-- Project 2: Digital Art -->
+        <!-- Project 2 -->
         <div class="card project-card" onclick="toggleProject('project2')">
             <h3>Digital Art</h3>
             <div class="project-details" id="project2">
@@ -199,22 +210,21 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.8rem;
             </div>
         </div>
 
-        <!-- Project 3: Interactive Experience -->
+        <!-- Project 3 -->
         <div class="card project-card" onclick="toggleProject('project3')">
             <h3>Interactive Experience</h3>
             <div class="project-details" id="project3">
                 <img src="assets/terminal_room.png" alt="Interactive Experience Image">
                 <p>Experience a new interactive adventure. Put your puzzle and cypher-solving skills to the test and discover the hidden mysteries of a science experiment gone wrong.</p>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/lDq5FMD0A-o" title="Interactive Experience Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/lDq5FMD0A-o" title="Interactive Experience Video" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <a class="project-link" href="https://archmage-source.github.io/Terminal/" target="_blank">Enter Experience</a>
             </div>
         </div>
-
     </div>
 
-    <!-- SOCIALS under Explore Work -->
+    <!-- Socials under Explore -->
     <div id="socials">
         <h3>Socials</h3>
         <a href="https://linktr.ee/ArchmageStudios" target="_blank">Visit Linktree</a>
@@ -224,7 +234,6 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.8rem;
 <!-- CONTACT -->
 <section class="section" id="contact">
     <h2>Contact</h2>
-
     <form action="https://formspree.io/f/mpqjkjwp" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
@@ -246,7 +255,7 @@ function scrollToExplore() {
     document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
 }
 
-// Toggle project details: only one open at a time
+// Project accordion
 let currentOpen = null;
 function toggleProject(id) {
     if (currentOpen && currentOpen !== id) {
@@ -266,6 +275,5 @@ function toggleProject(id) {
     }
 }
 </script>
-
 </body>
 </html>
