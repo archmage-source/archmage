@@ -105,9 +105,27 @@ nav a:hover { color: var(--accent); }
 }
 
 .project-details img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-.project-details p { margin-bottom: 15px; color: var(--muted); font-size: 0.95rem; }
-.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
-.video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.project-details p { margin-bottom: 20px; color: var(--muted); font-size: 0.95rem; }
+
+/* VIDEO */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
 .project-link { display:inline-block; padding:10px 20px; background: var(--accent); color:#fff; border-radius:6px; text-decoration:none; margin-top:10px; transition:0.3s; }
 .project-link:hover { background: #574bff; }
 
@@ -189,15 +207,36 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
 <section class="section" id="explore">
     <h2>Explore Projects</h2>
     <div class="grid">
+
         <!-- Project 1 -->
         <div class="card project-card" onclick="toggleProject('project1')">
             <h3>Visualisers</h3>
             <div class="project-details" id="project1">
                 <img src="assets/ctm_logo.png" alt="Visualiser Image">
                 <p>Development of the Visualisers for Music & Live Events ARCHMAGE develops immersive real-time visuals and interactive elements that sync with your music.</p>
+
+                <!-- NEW VIDEO (Added Above) -->
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/vCNTG7-xKCI" title="Visualisers Video" frameborder="0" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/1UuMH2l0rTE"
+                        title="Visualisers Video 2"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                 </div>
+
+                <!-- EXISTING VIDEO -->
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/vCNTG7-xKCI"
+                        title="Visualisers Video"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
             </div>
         </div>
 
@@ -217,14 +256,19 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
                 <img src="assets/terminal_room.png" alt="Interactive Experience Image">
                 <p>Experience a new interactive adventure. Put your puzzle and cypher-solving skills to the test and discover the hidden mysteries of a science experiment gone wrong.</p>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/lDq5FMD0A-o" title="Interactive Experience Video" frameborder="0" allowfullscreen></iframe>
+                    <iframe 
+                        src="https://www.youtube.com/embed/lDq5FMD0A-o"
+                        title="Interactive Experience Video"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                 </div>
                 <a class="project-link" href="https://archmage-source.github.io/Terminal/" target="_blank">Enter Experience</a>
             </div>
         </div>
     </div>
 
-    <!-- Socials under Explore -->
     <div id="socials">
         <h3>Socials</h3>
         <a href="https://linktr.ee/ArchmageStudios" target="_blank">Visit Linktree</a>
@@ -247,24 +291,20 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
 </footer>
 
 <script>
-// Hamburger menu toggle
 function toggleMenu() {
     document.getElementById("mobileNav").classList.toggle("active");
 }
 
-// Scroll to explore
 function scrollToExplore() {
     document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
 }
 
-// Robust project accordion: desktop single open, mobile independent
 function toggleProject(id) {
     const isMobile = window.innerWidth <= 1024;
     const projects = document.querySelectorAll('.project-details');
     const el = document.getElementById(id);
 
     if (!isMobile) {
-        // Desktop: close all others
         projects.forEach(proj => {
             if (proj.id !== id) {
                 proj.style.maxHeight = "0";
@@ -281,7 +321,6 @@ function toggleProject(id) {
         }
 
     } else {
-        // Mobile: toggle independently
         if (el.style.maxHeight && el.style.maxHeight !== "0px") {
             el.style.maxHeight = "0";
             el.style.opacity = 0;
@@ -295,4 +334,3 @@ function toggleProject(id) {
 
 </body>
 </html>
-
