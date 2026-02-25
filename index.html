@@ -91,7 +91,7 @@ nav a:hover { color: var(--accent); }
 
 /* GRID */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 40px; }
-.card { padding: 30px; background: #16161d; border-radius: 12px; transition: 0.3s; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+.card { padding: 30px; background: #16161d; border-radius: 12px; transition: 0.3s; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
 .card:hover { transform: translateY(-5px); background: #1c1c24; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
 /* PROJECT DETAILS */
@@ -103,13 +103,13 @@ nav a:hover { color: var(--accent); }
     margin-top: 15px;
     padding: 0 5px;
 }
-
 .project-details img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 .project-details p { margin-bottom: 15px; color: var(--muted); font-size: 0.95rem; }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
 .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
 .project-link { display:inline-block; padding:10px 20px; background: var(--accent); color:#fff; border-radius:6px; text-decoration:none; margin-top:10px; transition:0.3s; }
 .project-link:hover { background: #574bff; }
+.project-toggle { cursor: pointer; user-select: none; }
 
 /* SOCIALS */
 #socials { text-align:center; margin-top:60px; margin-bottom:60px; }
@@ -190,8 +190,8 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
     <h2>Explore Projects</h2>
     <div class="grid">
         <!-- Project 1 -->
-        <div class="card project-card" onclick="toggleProject('project1')">
-            <h3>Visualisers</h3>
+        <div class="card">
+            <h3 class="project-toggle" onclick="toggleProject('project1')">Visualisers</h3>
             <div class="project-details" id="project1">
                 <img src="assets/ctm_logo.png" alt="Visualiser Image">
                 <p>Development of the Visualisers for the Progressive Metal Project Carbon Theory. ARCHMAGE created immersive real-time visuals and interactive elements that sync with the music.</p>
@@ -202,8 +202,8 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
         </div>
 
         <!-- Project 2 -->
-        <div class="card project-card" onclick="toggleProject('project2')">
-            <h3>Digital Art</h3>
+        <div class="card">
+            <h3 class="project-toggle" onclick="toggleProject('project2')">Digital Art</h3>
             <div class="project-details" id="project2">
                 <img src="assets/digital_art.png" alt="Digital Art Image">
                 <p>Professional digital art development by ARCHMAGE, creating visually compelling works that push creative boundaries and explore procedural techniques.</p>
@@ -211,8 +211,8 @@ footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem
         </div>
 
         <!-- Project 3 -->
-        <div class="card project-card" onclick="toggleProject('project3')">
-            <h3>Interactive Experience</h3>
+        <div class="card">
+            <h3 class="project-toggle" onclick="toggleProject('project3')">Interactive Experience</h3>
             <div class="project-details" id="project3">
                 <img src="assets/terminal_room.png" alt="Interactive Experience Image">
                 <p>Experience a new interactive adventure. Put your puzzle and cypher-solving skills to the test and discover the hidden mysteries of a science experiment gone wrong.</p>
@@ -264,14 +264,14 @@ function toggleProject(id) {
     const el = document.getElementById(id);
 
     if (!isMobile) {
-        // Desktop: close all others
+        // Desktop: close all other project details
         projects.forEach(proj => {
             if (proj.id !== id) {
                 proj.style.maxHeight = "0";
                 proj.style.opacity = 0;
             }
         });
-
+        // Toggle clicked
         if (el.style.maxHeight && el.style.maxHeight !== "0px") {
             el.style.maxHeight = "0";
             el.style.opacity = 0;
