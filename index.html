@@ -86,8 +86,45 @@ nav a:hover { color: var(--accent); }
 
 /* GRID */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 40px; }
-.card { padding: 30px; background: #16161d; border-radius: 12px; transition: 0.3s; }
+.card { padding: 30px; background: #16161d; border-radius: 12px; transition: 0.3s; cursor: pointer; }
 .card:hover { transform: translateY(-5px); background: #1c1c24; }
+
+/* PROJECT DETAILS */
+.project-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    margin-top: 15px;
+}
+
+.project-details img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.project-details p {
+    margin-bottom: 15px;
+    color: var(--muted);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 /* CONTACT */
 #contact form {
@@ -111,6 +148,7 @@ nav a:hover { color: var(--accent); }
 
 /* FOOTER */
 footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8rem; }
+
 </style>
 </head>
 
@@ -173,9 +211,23 @@ footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8r
 <section class="section" id="explore">
     <h2>Explore Projects</h2>
     <div class="grid">
-        <div class="card"><h3>Project One</h3><p>Short cinematic sequence.</p></div>
+
+        <!-- Project One: Visualisers -->
+        <div class="card project-card" onclick="toggleProject('project1')">
+            <h3>Visualisers</h3>
+            <div class="project-details" id="project1">
+                <img src="assets/ctm_logo.png" alt="Visualiser Image">
+                <p>Development of the Visualisers for the Progressive Metal Project Carbon Theory. ARCHMAGE created immersive real-time visuals and interactive elements that sync with the music.</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/vCNTG7-xKCI" title="Visualisers Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Projects Placeholder -->
         <div class="card"><h3>Project Two</h3><p>Experimental generative installation.</p></div>
         <div class="card"><h3>Project Three</h3><p>Interactive web narrative system.</p></div>
+
     </div>
 </section>
 
@@ -183,7 +235,6 @@ footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8r
 <section class="section" id="contact">
     <h2>Contact</h2>
 
-    <!-- Standard HTML POST form to avoid 405 errors -->
     <form action="https://formspree.io/f/mpqjkjwp" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
@@ -204,8 +255,19 @@ function toggleMenu() {
 function scrollToExplore() {
     document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
 }
+
+// Toggle project details
+function toggleProject(id) {
+    const el = document.getElementById(id);
+    if (el.style.maxHeight && el.style.maxHeight !== "0px") {
+        el.style.maxHeight = "0";
+        el.style.opacity = 0;
+    } else {
+        el.style.maxHeight = el.scrollHeight + "px";
+        el.style.opacity = 1;
+    }
+}
 </script>
 
 </body>
 </html>
-
