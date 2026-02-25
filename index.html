@@ -15,69 +15,91 @@
     --muted: #a0a0a0;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); overflow-x:hidden; }
 
 /* PAGE LOAD FADE */
-.page-loader {
-    position: fixed;
-    inset: 0;
-    background: #0e0e11;
-    z-index: 5000;
-    opacity: 1;
-    transition: opacity 1.2s ease;
-    pointer-events: none;
+.page-loader{
+    position:fixed;
+    inset:0;
+    background:#0e0e11;
+    z-index:5000;
+    opacity:1;
+    transition:opacity 1.2s ease;
+    pointer-events:none;
 }
-.page-loader.fade-out { opacity: 0; }
+.page-loader.fade-out{ opacity:0; }
 
 /* HEADER */
-header {
-    position: fixed;
-    width: 100%;
-    padding: 18px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(14,14,17,0.9);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
+header{
+    position:fixed;
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(14,14,17,0.9);
+    backdrop-filter:blur(10px);
+    z-index:1000;
 }
 
-.logo-container { display: flex; align-items: center; gap: 12px; }
-.logo-container img { height: 50px; }
-.logo-text { font-weight: 800; letter-spacing: 2px; font-size: 1.2rem; }
+.logo-container{ display:flex; align-items:center; gap:12px; }
+.logo-container img{ height:50px; }
+.logo-text{ font-weight:800; letter-spacing:2px; font-size:1.2rem; }
 
 /* NAV */
-nav { display: flex; gap: 40px; }
-nav a { text-decoration: none; color: var(--text); position: relative; }
-nav a::after {
-    content:''; position:absolute; width:0; height:2px;
-    background:var(--accent); left:0; bottom:-5px; transition:0.3s;
+nav{ display:flex; gap:40px; }
+nav a{
+    text-decoration:none;
+    color:var(--text);
+    position:relative;
 }
-nav a:hover::after { width:100%; }
-nav a:hover { color: var(--accent); }
-
-.hamburger { display:none; flex-direction:column; gap:6px; cursor:pointer; }
-.hamburger span { width:25px; height:2px; background:white; }
-
-.mobile-nav {
-    position:fixed; top:0; right:-100%; height:100vh; width:70%;
-    background:#16161d; display:flex; flex-direction:column;
-    padding:100px 40px; gap:30px; transition:0.4s ease; z-index:999;
+nav a::after{
+    content:'';
+    position:absolute;
+    width:0;
+    height:2px;
+    background:var(--accent);
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
 }
-.mobile-nav.active { right:0; }
+nav a:hover::after{ width:100%; }
+nav a:hover{ color:var(--accent); }
 
-@media (max-width:1024px){
+/* HAMBURGER */
+.hamburger{ display:none; flex-direction:column; gap:6px; cursor:pointer; }
+.hamburger span{ width:25px; height:2px; background:white; }
+
+/* MOBILE MENU */
+.mobile-nav{
+    position:fixed;
+    top:0;
+    right:-100%;
+    height:100vh;
+    width:70%;
+    background:#16161d;
+    display:flex;
+    flex-direction:column;
+    padding:100px 40px;
+    gap:30px;
+    transition:0.4s ease;
+    z-index:999;
+}
+.mobile-nav a{ text-decoration:none; color:white; font-size:1.2rem; }
+.mobile-nav.active{ right:0; }
+
+@media(max-width:1024px){
     nav{display:none;}
     .hamburger{display:flex;}
 }
 
 /* SECTIONS */
-.section { padding:140px 8% 100px; min-height:100vh; }
+.section{ padding:140px 8% 100px; min-height:100vh; }
 
 /* HERO */
-.hero {
+.hero{
     position:relative;
     display:flex;
     flex-direction:column;
@@ -86,21 +108,24 @@ nav a:hover { color: var(--accent); }
     overflow:hidden;
 }
 
-/* Dual Videos */
-.hero-video {
+/* Dual Video Layers */
+.hero-video{
     position:absolute;
-    top:50%; left:50%;
-    width:100%; height:100%;
+    top:50%;
+    left:50%;
+    width:100%;
+    height:100%;
     object-fit:cover;
-    transform:translate(-50%, -50%);
+    transform:translate(-50%,-50%);
     pointer-events:none;
     opacity:0;
     transition:opacity 0.8s ease-in-out;
+    z-index:0;
 }
-.video-a { opacity:1; }
+.video-a{ opacity:1; }
 
 /* Overlay */
-.hero-overlay {
+.hero-overlay{
     position:absolute;
     inset:0;
     background:rgba(14,14,17,0.65);
@@ -108,36 +133,148 @@ nav a:hover { color: var(--accent); }
 }
 
 /* Hero Content Animation */
-.hero-content {
+.hero-content{
     position:relative;
     z-index:2;
     opacity:0;
     transform:translateY(20px);
     transition:opacity 1.2s ease, transform 1.2s ease;
 }
-.hero-content.visible {
+.hero-content.visible{
     opacity:1;
     transform:translateY(0);
 }
 
-.hero h1 { font-size:3rem; font-weight:800; max-width:700px; }
-.hero p { margin-top:20px; color:var(--muted); max-width:500px; }
+.hero h1{ font-size:3rem; font-weight:800; max-width:700px; line-height:1.2; }
+.hero p{ margin-top:20px; color:var(--muted); max-width:500px; font-size:1.1rem; }
 
-@media (max-width:768px){
-    .hero h1{font-size:2.2rem;}
+@media(max-width:768px){
+    .hero h1{ font-size:2.2rem; }
 }
 
-.button {
-    margin-top:30px; padding:12px 28px;
+.button{
+    margin-top:30px;
+    padding:12px 28px;
     border:1px solid var(--accent);
-    background:transparent; color:var(--text);
-    cursor:pointer; transition:0.3s;
+    background:transparent;
+    color:var(--text);
+    cursor:pointer;
+    transition:0.3s;
 }
-.button:hover { background:var(--accent); }
+.button:hover{ background:var(--accent); }
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:40px;
+    margin-top:40px;
+}
+.card{
+    padding:30px;
+    background:#16161d;
+    border-radius:12px;
+    transition:0.3s;
+    cursor:pointer;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+.card:hover{
+    transform:translateY(-5px);
+    background:#1c1c24;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* PROJECT DETAILS */
+.project-details{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:max-height 0.6s ease, opacity 0.6s ease;
+    margin-top:15px;
+    padding:0 5px;
+}
+.project-details img{
+    width:100%;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+.project-details p{
+    margin-bottom:20px;
+    color:var(--muted);
+    font-size:0.95rem;
+}
+
+/* VIDEO EMBEDS */
+.video-container{
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+.video-container iframe{
+    position:absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.project-link{
+    display:inline-block;
+    padding:10px 20px;
+    background:var(--accent);
+    color:#fff;
+    border-radius:6px;
+    text-decoration:none;
+    margin-top:10px;
+    transition:0.3s;
+}
+.project-link:hover{ background:#574bff; }
+
+/* SOCIALS */
+#socials{ text-align:center; margin:60px 0; }
+#socials h3{ margin-bottom:20px; font-weight:600; font-size:1.2rem; }
+#socials a{
+    display:inline-block;
+    padding:12px 24px;
+    background:var(--accent);
+    color:#fff;
+    border-radius:6px;
+    text-decoration:none;
+    transition:0.3s;
+}
+#socials a:hover{ background:#574bff; }
+
+/* CONTACT */
+#contact form{
+    display:flex;
+    flex-direction:column;
+    max-width:600px;
+    margin-top:40px;
+}
+#contact input, #contact textarea{
+    background:#16161d;
+    border:1px solid #222;
+    color:white;
+    padding:12px;
+    margin-bottom:20px;
+    border-radius:6px;
+    font-size:1rem;
+}
+#contact input:focus, #contact textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+}
 
 /* FOOTER */
-footer { text-align:center; padding:30px; color:var(--muted); font-size:0.85rem; }
-
+footer{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    font-size:0.85rem;
+}
 </style>
 </head>
 
@@ -163,6 +300,13 @@ footer { text-align:center; padding:30px; color:var(--muted); font-size:0.85rem;
     </div>
 </header>
 
+<div class="mobile-nav" id="mobileNav">
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#explore" onclick="toggleMenu()">Explore</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
 <!-- HERO -->
 <section class="section hero" id="home">
 
@@ -184,70 +328,149 @@ footer { text-align:center; padding:30px; color:var(--muted); font-size:0.85rem;
 
 </section>
 
+<!-- ABOUT -->
+<section class="section" id="about">
+    <h2>About ARCHMAGE</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Real-Time & Cinematic Animation Systems</h3>
+            <p>High-performance animation blending real-time & cinematic storytelling.</p>
+        </div>
+        <div class="card">
+            <h3>Procedural & Experimental Digital Art</h3>
+            <p>Visuals pushing creative and technical boundaries.</p>
+        </div>
+        <div class="card">
+            <h3>Interactive Narrative & Engagement Systems</h3>
+            <p>Immersive digital experiences shaped by audience interaction.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EXPLORE -->
+<section class="section" id="explore">
+    <h2>Explore Projects</h2>
+    <div class="grid">
+
+        <div class="card project-card" onclick="toggleProject('project1')">
+            <h3>Visualisers ▼</h3>
+            <div class="project-details" id="project1">
+                <img src="assets/ctm_logo.png">
+                <p>Development of immersive real-time visuals and interactive elements synced with music & live events.</p>
+            </div>
+        </div>
+
+        <div class="card project-card" onclick="toggleProject('project2')">
+            <h3>Digital Art ▼</h3>
+            <div class="project-details" id="project2">
+                <img src="assets/digital_art.png">
+                <p>Professional digital art pushing procedural and experimental boundaries.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="socials">
+        <h3>Socials</h3>
+        <a href="https://linktr.ee/ArchmageStudios" target="_blank">Visit Linktree</a>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+    <h2>Contact</h2>
+    <form action="https://formspree.io/f/mpqjkjwp" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button class="button" type="submit">Send Message</button>
+    </form>
+</section>
+
 <footer>
     © 2026 ARCHMAGE Studio — Animation & Digital Art
 </footer>
 
 <script>
+/* PAGE LOAD + HERO TEXT REVEAL */
+window.addEventListener("load",function(){
+    const loader=document.getElementById("pageLoader");
+    const heroContent=document.getElementById("heroContent");
 
-/* PAGE LOAD FADE + TEXT REVEAL */
-window.addEventListener("load", function () {
-    const loader = document.getElementById("pageLoader");
-    const heroContent = document.getElementById("heroContent");
-
-    setTimeout(() => {
+    setTimeout(()=>{
         loader.classList.add("fade-out");
 
-        setTimeout(() => {
-            loader.style.display = "none";
+        setTimeout(()=>{
+            loader.style.display="none";
             heroContent.classList.add("visible");
-        }, 1200);
+        },1200);
 
-    }, 300);
+    },300);
 });
 
-/* SEAMLESS VIDEO CROSSFADE LOOP */
-const videoA = document.querySelector(".video-a");
-const videoB = document.querySelector(".video-b");
+/* SEAMLESS VIDEO LOOP */
+const videoA=document.querySelector(".video-a");
+const videoB=document.querySelector(".video-b");
 
-let activeVideo = videoA;
-let nextVideo = videoB;
-const fadeDuration = 800;
-const buffer = 0.4;
+let activeVideo=videoA;
+let nextVideo=videoB;
+const fadeDuration=800;
+const buffer=0.4;
 
-function setupLoop(video) {
-    video.addEventListener("timeupdate", () => {
-        if (video.duration - video.currentTime < buffer) {
+function setupLoop(video){
+    video.addEventListener("timeupdate",()=>{
+        if(video.duration - video.currentTime < buffer){
             crossFade();
         }
     });
 }
 
-function crossFade() {
-    nextVideo.currentTime = 0;
+function crossFade(){
+    nextVideo.currentTime=0;
     nextVideo.play();
+    nextVideo.style.opacity=1;
+    activeVideo.style.opacity=0;
 
-    nextVideo.style.opacity = 1;
-    activeVideo.style.opacity = 0;
-
-    setTimeout(() => {
+    setTimeout(()=>{
         activeVideo.pause();
-        const temp = activeVideo;
-        activeVideo = nextVideo;
-        nextVideo = temp;
-    }, fadeDuration);
+        const temp=activeVideo;
+        activeVideo=nextVideo;
+        nextVideo=temp;
+    },fadeDuration);
 }
 
 setupLoop(videoA);
 
-function toggleMenu() {
-    document.querySelector(".mobile-nav")?.classList.toggle("active");
+function toggleMenu(){
+    document.getElementById("mobileNav").classList.toggle("active");
 }
 
-function scrollToExplore() {
-    document.getElementById("explore")?.scrollIntoView({ behavior: "smooth" });
+function scrollToExplore(){
+    document.getElementById("explore").scrollIntoView({behavior:"smooth"});
 }
 
+function toggleProject(id){
+    const isMobile=window.innerWidth<=1024;
+    const projects=document.querySelectorAll('.project-details');
+    const el=document.getElementById(id);
+
+    if(!isMobile){
+        projects.forEach(proj=>{
+            if(proj.id!==id){
+                proj.style.maxHeight="0";
+                proj.style.opacity=0;
+            }
+        });
+    }
+
+    if(el.style.maxHeight && el.style.maxHeight!=="0px"){
+        el.style.maxHeight="0";
+        el.style.opacity=0;
+    }else{
+        el.style.maxHeight=el.scrollHeight+"px";
+        el.style.opacity=1;
+    }
+}
 </script>
 
 </body>
