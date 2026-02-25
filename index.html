@@ -257,32 +257,31 @@ function scrollToExplore() {
     document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
 }
 
-// Project accordion: desktop only single open, mobile independent
-let currentOpen = null;
-
+// Robust project accordion: desktop single open, mobile independent
 function toggleProject(id) {
-    const el = document.getElementById(id);
     const isMobile = window.innerWidth <= 1024;
+    const projects = document.querySelectorAll('.project-details');
+    const el = document.getElementById(id);
 
     if (!isMobile) {
-        // Desktop: close previous open
-        if (currentOpen && currentOpen !== id) {
-            const prev = document.getElementById(currentOpen);
-            prev.style.maxHeight = "0";
-            prev.style.opacity = 0;
-        }
+        // Desktop: close all others
+        projects.forEach(proj => {
+            if (proj.id !== id) {
+                proj.style.maxHeight = "0";
+                proj.style.opacity = 0;
+            }
+        });
 
         if (el.style.maxHeight && el.style.maxHeight !== "0px") {
             el.style.maxHeight = "0";
             el.style.opacity = 0;
-            currentOpen = null;
         } else {
             el.style.maxHeight = el.scrollHeight + "px";
             el.style.opacity = 1;
-            currentOpen = id;
         }
+
     } else {
-        // Mobile: allow independent toggles
+        // Mobile: toggle independently
         if (el.style.maxHeight && el.style.maxHeight !== "0px") {
             el.style.maxHeight = "0";
             el.style.opacity = 0;
