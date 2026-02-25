@@ -103,6 +103,7 @@ nav a:hover { color: var(--accent); }
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(14,14,17,0.6); /* overlay for readability */
     z-index: 2;
+    pointer-events: none; /* allow clicks through overlay */
 }
 
 .hero video {
@@ -114,14 +115,19 @@ nav a:hover { color: var(--accent); }
     object-fit: cover;
     transform: translate(-50%, -50%);
     z-index: 0;
-    filter: brightness(0.7); /* slightly darken video */
+    filter: brightness(0.7);
 }
 
-.hero h1, .hero p, .hero .button {
+.hero h1,
+.hero p,
+.hero .button {
+    position: relative;
+    z-index: 3;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s forwards;
 }
+
 .hero h1 { animation-delay: 0.5s; font-size: 3rem; font-weight: 800; max-width: 700px; line-height: 1.2; }
 .hero p { animation-delay: 1s; margin-top: 20px; color: var(--muted); max-width: 500px; font-size: 1.1rem; }
 .hero .button { animation-delay: 1.5s; margin-top: 30px; padding: 12px 28px; border: 1px solid var(--accent); background: transparent; color: var(--text); cursor: pointer; transition: 0.3s; }
@@ -183,6 +189,18 @@ nav a:hover { color: var(--accent); }
     background:#16161d; border:1px solid #222; color:white; padding:12px; margin-bottom:20px; border-radius:6px; font-size:1rem;
 }
 #contact input:focus, #contact textarea:focus { outline:none; border-color: var(--accent); }
+
+/* FIXED CONTACT BUTTON */
+#contact button.button {
+    margin-top: 0;
+    padding: 12px 28px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.3s;
+}
+#contact button.button:hover { background: var(--accent); }
 
 /* FOOTER */
 footer { text-align:center; padding:30px; color: var(--muted); font-size:0.85rem; }
