@@ -157,7 +157,7 @@ nav a:hover{ color:var(--accent); }
     padding:12px 28px;
     border:1px solid var(--accent);
     background:transparent;
-    color:var(--text);
+    color:var(--text;
     cursor:pointer;
     transition:0.3s;
 }
@@ -309,23 +309,18 @@ footer{
 
 <!-- HERO -->
 <section class="section hero" id="home">
-
     <video class="hero-video video-a" autoplay muted playsinline>
         <source src="assets/amnew_intro.mp4" type="video/mp4">
     </video>
-
     <video class="hero-video video-b" autoplay muted playsinline>
         <source src="assets/amnew_intro.mp4" type="video/mp4">
     </video>
-
     <div class="hero-overlay"></div>
-
     <div class="hero-content" id="heroContent">
         <h1>Animation & Digital Art Studio</h1>
         <p>Real-time systems. Cinematic animation. Procedural art. Interactive narrative experiences.</p>
         <button class="button" onclick="scrollToExplore()">Explore Work</button>
     </div>
-
 </section>
 
 <!-- ABOUT -->
@@ -352,19 +347,40 @@ footer{
     <h2>Explore Projects</h2>
     <div class="grid">
 
+        <!-- Project 1 -->
         <div class="card project-card" onclick="toggleProject('project1')">
             <h3>Visualisers ▼</h3>
             <div class="project-details" id="project1">
                 <img src="assets/ctm_logo.png">
                 <p>Development of immersive real-time visuals and interactive elements synced with music & live events.</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/1UuMH2l0rTE" allowfullscreen></iframe>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/vCNTG7-xKCI" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
 
+        <!-- Project 2 -->
         <div class="card project-card" onclick="toggleProject('project2')">
             <h3>Digital Art ▼</h3>
             <div class="project-details" id="project2">
                 <img src="assets/digital_art.png">
                 <p>Professional digital art pushing procedural and experimental boundaries.</p>
+            </div>
+        </div>
+
+        <!-- Project 3 RESTORED -->
+        <div class="card project-card" onclick="toggleProject('project3')">
+            <h3>New Interactive Experience Early Access ▼</h3>
+            <div class="project-details" id="project3">
+                <img src="assets/terminal_room.png">
+                <p>Experience a new interactive adventure. Put your puzzle and cypher-solving skills to the test and discover the hidden mysteries of a science experiment gone wrong.</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/lDq5FMD0A-o" allowfullscreen></iframe>
+                </div>
+                <a class="project-link" href="https://archmage-source.github.io/Terminal/" target="_blank">Enter Experience</a>
             </div>
         </div>
 
@@ -392,23 +408,18 @@ footer{
 </footer>
 
 <script>
-/* PAGE LOAD + HERO TEXT REVEAL */
 window.addEventListener("load",function(){
     const loader=document.getElementById("pageLoader");
     const heroContent=document.getElementById("heroContent");
-
     setTimeout(()=>{
         loader.classList.add("fade-out");
-
         setTimeout(()=>{
             loader.style.display="none";
             heroContent.classList.add("visible");
         },1200);
-
     },300);
 });
 
-/* SEAMLESS VIDEO LOOP */
 const videoA=document.querySelector(".video-a");
 const videoB=document.querySelector(".video-b");
 
@@ -430,7 +441,6 @@ function crossFade(){
     nextVideo.play();
     nextVideo.style.opacity=1;
     activeVideo.style.opacity=0;
-
     setTimeout(()=>{
         activeVideo.pause();
         const temp=activeVideo;
