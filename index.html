@@ -15,13 +15,7 @@
     --muted: #a0a0a0;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); overflow-x: hidden; }
 
@@ -98,56 +92,22 @@ nav a:hover { color: var(--accent); }
     margin-top: 15px;
 }
 
-.project-details img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.project-details p {
-    margin-bottom: 15px;
-    color: var(--muted);
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
+.project-details img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+.project-details p { margin-bottom: 15px; color: var(--muted); }
+.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
+.video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.project-link { display:inline-block; padding:10px 20px; background: var(--accent); color:#fff; border-radius:6px; text-decoration:none; margin-top:10px; transition:0.3s; }
+.project-link:hover { background: #574bff; }
 
 /* CONTACT */
-#contact form {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    margin-top: 40px;
+#contact form { display:flex; flex-direction: column; max-width:500px; margin-top:40px; }
+#contact input, #contact textarea {
+    background:#16161d; border:1px solid #222; color:white; padding:12px; margin-bottom:20px; border-radius:6px; font-size:0.95rem;
 }
-#contact input,
-#contact textarea {
-    background: #16161d;
-    border: 1px solid #222;
-    color: white;
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-}
-#contact input:focus,
-#contact textarea:focus { outline: none; border-color: var(--accent); }
+#contact input:focus, #contact textarea:focus { outline:none; border-color: var(--accent); }
 
 /* FOOTER */
-footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8rem; }
+footer { text-align:center; padding:30px; color: var(--muted); font-size:0.8rem; }
 
 </style>
 </head>
@@ -212,7 +172,7 @@ footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8r
     <h2>Explore Projects</h2>
     <div class="grid">
 
-        <!-- Project One: Visualisers -->
+        <!-- Project 1: Visualisers -->
         <div class="card project-card" onclick="toggleProject('project1')">
             <h3>Visualisers</h3>
             <div class="project-details" id="project1">
@@ -224,9 +184,27 @@ footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8r
             </div>
         </div>
 
-        <!-- Other Projects Placeholder -->
-        <div class="card"><h3>Project Two</h3><p>Experimental generative installation.</p></div>
-        <div class="card"><h3>Project Three</h3><p>Interactive web narrative system.</p></div>
+        <!-- Project 2: Digital Art -->
+        <div class="card project-card" onclick="toggleProject('project2')">
+            <h3>Digital Art</h3>
+            <div class="project-details" id="project2">
+                <img src="assets/digital_art.png" alt="Digital Art Image">
+                <p>Professional digital art development by ARCHMAGE, creating visually compelling works that push creative boundaries and explore procedural techniques.</p>
+            </div>
+        </div>
+
+        <!-- Project 3: Interactive Experience -->
+        <div class="card project-card" onclick="toggleProject('project3')">
+            <h3>Interactive Experience</h3>
+            <div class="project-details" id="project3">
+                <img src="assets/terminal_room.png" alt="Interactive Experience Image">
+                <p>Experience a new interactive adventure. Put your puzzle and cypher-solving skills to the test and discover the hidden mysteries of a science experiment gone wrong.</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/lDq5FMD0A-o" title="Interactive Experience Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <a class="project-link" href="https://archmage-source.github.io/Terminal/" target="_blank">Enter Experience</a>
+            </div>
+        </div>
 
     </div>
 </section>
@@ -256,15 +234,24 @@ function scrollToExplore() {
     document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
 }
 
-// Toggle project details
+// Toggle project details: only one open at a time
+let currentOpen = null;
 function toggleProject(id) {
+    if (currentOpen && currentOpen !== id) {
+        // Close previous
+        const prev = document.getElementById(currentOpen);
+        prev.style.maxHeight = "0";
+        prev.style.opacity = 0;
+    }
     const el = document.getElementById(id);
     if (el.style.maxHeight && el.style.maxHeight !== "0px") {
         el.style.maxHeight = "0";
         el.style.opacity = 0;
+        currentOpen = null;
     } else {
         el.style.maxHeight = el.scrollHeight + "px";
         el.style.opacity = 1;
+        currentOpen = id;
     }
 }
 </script>
