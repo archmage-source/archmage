@@ -38,12 +38,7 @@ header {
     z-index: 1000;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
+.logo-container { display: flex; align-items: center; gap: 12px; }
 .logo-container img { height: 40px; width: auto; }
 .logo-text { font-weight: 800; letter-spacing: 2px; font-size: 1.1rem; }
 
@@ -53,13 +48,8 @@ nav a { text-decoration: none; color: var(--text); font-weight: 400; transition:
 nav a:hover { color: var(--accent); }
 
 /* HAMBURGER */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 6px;
-}
-.hamburger span { width: 25px; height: 2px; background: white; transition: 0.3s; }
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+.hamburger span { width: 25px; height: 2px; background: white; }
 
 /* MOBILE MENU */
 .mobile-nav {
@@ -119,15 +109,8 @@ nav a:hover { color: var(--accent); }
 #contact input:focus,
 #contact textarea:focus { outline: none; border-color: var(--accent); }
 
-.success-message {
-    margin-top: 20px;
-    color: var(--accent);
-    display: none;
-}
-
 /* FOOTER */
 footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8rem; }
-
 </style>
 </head>
 
@@ -200,14 +183,13 @@ footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8r
 <section class="section" id="contact">
     <h2>Contact</h2>
 
-    <form id="contact-form" action="https://formspree.io/f/mpqjkjwp" method="POST">
+    <!-- Standard HTML POST form to avoid 405 errors -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button class="button" type="submit">Send Message</button>
     </form>
-
-    <div class="success-message" id="successMessage">Message sent successfully!</div>
 </section>
 
 <footer>
@@ -222,26 +204,7 @@ function toggleMenu() {
 function scrollToExplore() {
     document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
 }
-
-// AJAX form submission for inline success message
-const form = document.getElementById("contact-form");
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const response = await fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: { 'Accept': 'application/json' }
-    });
-    if (response.ok) {
-        document.getElementById("successMessage").style.display = "block";
-        form.reset();
-    } else {
-        alert("Oops! Something went wrong. Check your Formspree ID and email verification.");
-    }
-});
 </script>
 
 </body>
 </html>
-
