@@ -297,13 +297,15 @@ footer a:hover { text-decoration: underline; }
     <h2>Explore Projects</h2>
     <div class="grid">
 
-        <!-- Show Reel -->
-        <div class="card">
-            <h3>Show Reel</h3>
-            <a href="https://www.youtube.com/watch?v=5mxqN4piC2o" target="_blank">
-                <img src="assets/museum.jpg" alt="Show Reel Video" class="video-thumbnail">
-            </a>
-        </div>
+       <!-- Show Reel -->
+<div class="card project-card" onclick="toggleProject('project4')">
+    <h3>Show Reel ▼</h3>
+    <div class="project-details" id="project4">
+        <a href="https://www.youtube.com/watch?v=5mxqN4piC2o" target="_blank">
+            <img src="assets/museum.jpg" alt="Show Reel Video" class="video-thumbnail">
+        </a>
+    </div>
+</div>
 
         <!-- Project 1 -->
         <div class="card project-card" onclick="toggleProject('project1')">
@@ -410,6 +412,7 @@ function toggleProject(id) {
 
 </body>
 </html>
+
 
 
 
